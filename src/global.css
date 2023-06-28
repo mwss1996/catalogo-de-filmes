@@ -1,0 +1,12 @@
+/* Layout width */
+.width {
+  width: 1300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+@media (max-width: 1300px) {
+  .width {
+    width: 100%;
+    margin: 0;
+  }
+}

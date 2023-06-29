@@ -1,9 +1,14 @@
-import { connectMongo } from "@/database/mongo";
+import Layout from "@/components/layout/Layout";
+import Home from "./components/Home";
 
 export default function Index() {
-  return <div>Teste</div>;
+  return (
+    <Layout>
+      <Home />
+    </Layout>
+  );
 }
 export async function getServerSideProps() {
-  await connectMongo();
+  //await connectMongo();
   return { props: {} };
 }

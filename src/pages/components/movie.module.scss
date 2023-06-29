@@ -1,0 +1,22 @@
+@use "../../global.scss";
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: global.$medium-margin;
+  gap: global.$small-margin;
+  width: 240px;
+  background-color: #131313;
+  color: #fff;
+  border-radius: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+  img {
+    border-radius: 3px;
+  }
+  .title {
+    font-weight: 700;
+  }
+}
+.container:hover {
+  transform: scale(1.1);
+}

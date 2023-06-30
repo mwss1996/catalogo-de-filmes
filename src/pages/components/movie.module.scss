@@ -5,11 +5,12 @@
   padding: global.$medium-margin;
   gap: global.$small-margin;
   width: 240px;
-  background-color: #131313;
+  background-color: hsla(0, 0%, 0%, 0.522);
   color: #fff;
   border-radius: 3px;
   transition: 0.3s;
   cursor: pointer;
+  text-decoration: none;
   img {
     border-radius: 3px;
   }
@@ -18,5 +19,5 @@
   }
 }
 .container:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }

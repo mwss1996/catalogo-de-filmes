@@ -11,7 +11,7 @@ interface IndexProps extends IndexStaticProps {}
 export default function Index(props: IndexProps) {
   return (
     <Layout>
-      <MovieDisplay />
+      <MovieDisplay movie={props.movie} />
     </Layout>
   );
 }
@@ -29,10 +29,12 @@ export async function getStaticProps(
 }
 export async function getStaticPaths() {
   await connectMongo();
-  const movies = await Movie.find<IMovie>().select({});
-  console.log(movies);
+  const moviesIds = await Movie.find<IMovie>().distinct("_id");
+  const moviesIdsObject: string[] = JSON.parse(JSON.stringify(moviesIds));
   return {
-    paths: [],
+    paths: moviesIdsObject.map((movieId) => ({
+      params: { movieId },
+    })),
     fallback: false,
   };
 }

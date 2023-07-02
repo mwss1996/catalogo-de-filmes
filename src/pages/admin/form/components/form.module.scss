@@ -1,4 +1,4 @@
-@use "../../../global.scss";
+@use "../../../../global.scss";
 .container {
   display: flex;
   flex-direction: column;
@@ -18,7 +18,8 @@
       label {
         color: #fff;
       }
-      input {
+      input,
+      textarea {
         background-color: #444444;
         border: 1px solid #979797;
         padding: global.$small-margin global.$medium-margin;

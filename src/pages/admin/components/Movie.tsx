@@ -18,10 +18,10 @@ export default function Movie(props: MovieProps) {
       : props.title;
   return (
     <a href={"/movies/" + props.id} className={styles.container}>
-      <img src={props.coverUrl} />
       <span className={styles.title}>
         <span dangerouslySetInnerHTML={{ __html: highlightedTitle }} />
       </span>
+      <span>id: {props.id}</span>
       <span>Streaming: {props.streaming}</span>
       <span>Nota: {props.rating}</span>
     </a>

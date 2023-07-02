@@ -1,9 +1,9 @@
 import Layout from "@/components/layout/Layout";
-import Home from "./components/Home";
-import { GetStaticPropsResult } from "next";
 import { IMovie, Movie } from "@/database/Movie";
 import { connectMongo } from "@/database/mongo";
+import { GetStaticPropsResult } from "next";
 import { useState } from "react";
+import Admin from "./components/Admin";
 
 interface IndexStaticProps {
   movies: IMovie[];
@@ -16,8 +16,8 @@ export default function Index(props: IndexProps) {
     searchRegex.test(movie.title)
   );
   return (
-    <Layout>
-      <Home
+    <Layout isAdmin>
+      <Admin
         movies={{
           movies: filteredMovies,
           highlightText: searchText,
@@ -37,6 +37,7 @@ export async function getStaticProps(): Promise<
   const movies = await Movie.find<IMovie>().sort({
     _id: -1,
   });
+  console.log(movies);
   return {
     props: {
       movies: JSON.parse(JSON.stringify(movies)),

@@ -1,4 +1,4 @@
-@use "../../../../global.scss";
+@use "../../../../../global.scss";
 .container {
   display: flex;
   flex-direction: column;
@@ -27,9 +27,20 @@
         border-radius: 3px;
       }
     }
-    .submitButton {
-      @include global.button;
-      align-self: flex-end;
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: global.$medium-margin;
+      .deleteButton {
+        @include global.button;
+        align-self: flex-end;
+        background-color: #414141;
+      }
+      .submitButton {
+        @include global.button;
+        align-self: flex-end;
+      }
     }
   }
 }

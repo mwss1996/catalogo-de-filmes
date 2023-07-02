@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./layout.module.scss";
+import Head from "next/head";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,8 +9,11 @@ interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   return (
     <div className={[styles.root, props.isAdmin ? styles.admin : ""].join(" ")}>
+      <Head>
+        <title>Catálogo de Filmes</title>
+      </Head>
       <header>
-        <div className="width">
+        <div className={["width", styles.headerContent].join(" ")}>
           <h1>
             <Link href={props.isAdmin ? "/admin" : "/"}>
               Catálogo de Filmes{" "}
@@ -18,6 +22,11 @@ export default function Layout(props: LayoutProps) {
               ) : null}
             </Link>
           </h1>
+          {props.isAdmin && (
+            <Link href={"/"} className={styles.exitAdmin}>
+              SAIR
+            </Link>
+          )}
         </div>
       </header>
       <main>

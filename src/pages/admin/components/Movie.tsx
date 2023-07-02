@@ -17,7 +17,7 @@ export default function Movie(props: MovieProps) {
         )
       : props.title;
   return (
-    <a href={"/movies/" + props.id} className={styles.container}>
+    <a href={"/admin/form/" + props.id} className={styles.container}>
       <span className={styles.title}>
         <span dangerouslySetInnerHTML={{ __html: highlightedTitle }} />
       </span>

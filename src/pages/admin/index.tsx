@@ -37,7 +37,6 @@ export async function getStaticProps(): Promise<
   const movies = await Movie.find<IMovie>().sort({
     _id: -1,
   });
-  console.log(movies);
   return {
     props: {
       movies: JSON.parse(JSON.stringify(movies)),

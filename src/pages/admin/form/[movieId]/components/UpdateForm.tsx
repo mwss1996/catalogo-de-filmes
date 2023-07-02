@@ -1,22 +1,24 @@
 import { useState } from "react";
-import styles from "./form.module.scss";
-import { Movie } from "@/database/Movie";
+import styles from "./update-form.module.scss";
+import { IMovie, Movie } from "@/database/Movie";
 import { connectMongo } from "@/database/mongo";
 import axios from "axios";
 
-interface UpdateFormProps {}
+interface UpdateFormProps {
+  movie: IMovie;
+}
 export default function UpdateForm(props: UpdateFormProps) {
   const [formState, setFormState] = useState({
-    titleInputText: "",
-    descriptionInputText: "",
-    coverURLInputText: "",
-    categoryInputText: "",
-    streamingInputText: "",
-    ratingInputText: "",
+    titleInputText: props.movie.title,
+    descriptionInputText: props.movie.description,
+    coverURLInputText: props.movie.coverURL,
+    categoryInputText: props.movie.category,
+    streamingInputText: props.movie.streaming,
+    ratingInputText: props.movie.rating.toString(),
   });
   return (
     <div className={styles.container}>
-      <h1>Cadastrar novo filme</h1>
+      <h1>Editar filme</h1>
       <form action="/admin">
         <div className={styles.field}>
           <label htmlFor="title">Título</label>
@@ -107,30 +109,43 @@ export default function UpdateForm(props: UpdateFormProps) {
             }
           />
         </div>
-        <button
-          type="submit"
-          className={styles.submitButton}
-          disabled={
-            formState.titleInputText === "" ||
-            formState.descriptionInputText === "" ||
-            formState.coverURLInputText === "" ||
-            formState.categoryInputText === "" ||
-            formState.streamingInputText === "" ||
-            formState.ratingInputText === ""
-          }
-          onClick={() => {
-            axios.post("/api/registerMovie", {
-              title: formState.titleInputText,
-              description: formState.descriptionInputText,
-              coverURL: formState.coverURLInputText,
-              category: formState.categoryInputText,
-              streaming: formState.streamingInputText,
-              rating: formState.ratingInputText,
-            });
-          }}
-        >
-          Salvar
-        </button>
+        <div className={styles.buttons}>
+          <button
+            className={styles.deleteButton}
+            onClick={() => {
+              axios.post("/api/deleteMovie", {
+                id: props.movie._id,
+              });
+            }}
+          >
+            Deletar
+          </button>
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={
+              formState.titleInputText === "" ||
+              formState.descriptionInputText === "" ||
+              formState.coverURLInputText === "" ||
+              formState.categoryInputText === "" ||
+              formState.streamingInputText === "" ||
+              formState.ratingInputText === ""
+            }
+            onClick={() => {
+              axios.post("/api/registerMovie", {
+                id: props.movie._id,
+                title: formState.titleInputText,
+                description: formState.descriptionInputText,
+                coverURL: formState.coverURLInputText,
+                category: formState.categoryInputText,
+                streaming: formState.streamingInputText,
+                rating: formState.ratingInputText,
+              });
+            }}
+          >
+            Salvar
+          </button>
+        </div>
       </form>
     </div>
   );
